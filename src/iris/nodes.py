@@ -9,9 +9,11 @@ from typing import Dict, Tuple
 import numpy as np
 import pandas as pd
 from pyspark.sql import DataFrame
+from sklearn import datasets
 
 
-def split_data(data: DataFrame, parameters: Dict) -> Tuple:
+
+def split_data(parameters: Dict) -> Tuple:
     """Splits data into features and targets training and test sets.
 
     Args:
@@ -20,6 +22,8 @@ def split_data(data: DataFrame, parameters: Dict) -> Tuple:
     Returns:
         Split data.
     """
+
+    data = datasets.load_iris()
 
     # Split to training and testing data
     data_train, data_test = data.randomSplit(
